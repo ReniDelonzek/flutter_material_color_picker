@@ -16,23 +16,25 @@ class MaterialColorPicker extends StatefulWidget {
   final IconData iconSelected;
   final VoidCallback? onBack;
   final double? elevation;
+  final double? width;
 
-  const MaterialColorPicker({
-    Key? key,
-    this.selectedColor,
-    this.onColorChange,
-    this.onMainColorChange,
-    this.colors,
-    this.shrinkWrap = false,
-    this.physics,
-    this.allowShades = true,
-    this.onlyShadeSelection = false,
-    this.iconSelected = Icons.check,
-    this.circleSize = 45.0,
-    this.spacing = 9.0,
-    this.onBack,
-    this.elevation,
-  }) : super(key: key);
+  const MaterialColorPicker(
+      {Key? key,
+      this.selectedColor,
+      this.onColorChange,
+      this.onMainColorChange,
+      this.colors,
+      this.shrinkWrap = false,
+      this.physics,
+      this.allowShades = true,
+      this.onlyShadeSelection = false,
+      this.iconSelected = Icons.check,
+      this.circleSize = 45.0,
+      this.spacing = 9.0,
+      this.onBack,
+      this.elevation,
+      this.width})
+      : super(key: key);
 
   @override
   _MaterialColorPickerState createState() => _MaterialColorPickerState();
@@ -176,7 +178,8 @@ class _MaterialColorPickerState extends State<MaterialColorPicker> {
         : _buildListShadesColor(_mainColor!);
 
     // Size of dialog
-    final double width = MediaQuery.of(context).size.width * .80;
+    final double width =
+        widget.width ?? MediaQuery.of(context).size.width * .80;
     // Number of circle per line, depend on width and circleSize
     final int nbrCircleLine = width ~/ (widget.circleSize + widget.spacing);
 
