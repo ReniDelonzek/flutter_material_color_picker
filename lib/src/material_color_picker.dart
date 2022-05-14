@@ -52,7 +52,7 @@ class _MaterialColorPickerState extends State<MaterialColorPicker> {
   @override
   void initState() {
     super.initState();
-    _initSelectedValue();
+    _initSelectedValue(setMainSelection: true);
   }
 
   @protected
@@ -61,7 +61,7 @@ class _MaterialColorPickerState extends State<MaterialColorPicker> {
     _initSelectedValue();
   }
 
-  void _initSelectedValue() {
+  void _initSelectedValue({bool setMainSelection = false}) {
     if (widget.colors != null) _colors = widget.colors;
 
     Color? shadeColor = widget.selectedColor ?? _defaultValue;
@@ -75,7 +75,9 @@ class _MaterialColorPickerState extends State<MaterialColorPicker> {
     setState(() {
       _mainColor = mainColor;
       _shadeColor = shadeColor;
-      _isMainSelection = true;
+      if (setMainSelection) {
+        _isMainSelection = true;
+      }
     });
   }
 
